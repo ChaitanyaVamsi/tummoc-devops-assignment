@@ -24,9 +24,20 @@ resource "aws_subnet" "public" {
   availability_zone = "${var.region}a"
   map_public_ip_on_launch = true
   tags =merge(local.common_tags,{
-    Name = "${local.common_name}-public-subnet"
+    Name = "${local.common_name}-public-subnet-a"
   })
 
+}
+
+resource "aws_subnet" "public_b" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              =  var.public_b_cidr # new CIDR block
+  availability_zone       = "${var.region}b"
+  map_public_ip_on_launch = true
+
+  tags = merge(local.common_tags, {
+    Name = "${local.common_name}-public-subnet-b"
+  })
 }
 
 # private subent - app EC2 , no internet
@@ -37,7 +48,7 @@ resource "aws_subnet" "private" {
   availability_zone = "${var.region}a"
   map_public_ip_on_launch = false
   tags = merge(local.common_tags,{
-    Name = "${local.common_name}-private-subnet"
+    Name = "${local.common_name}-private-subnet-a"
   })
 }
 

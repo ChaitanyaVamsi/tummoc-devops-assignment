@@ -1,6 +1,7 @@
 # ALB sg
 resource "aws_security_group" "alb" {
   name = "${local.common_name}-alb-sg"
+  vpc_id      = aws_vpc.main.id
   description = "Security group for the alb"
   ingress {
     description = "http from internet"
@@ -22,6 +23,7 @@ resource "aws_security_group" "alb" {
 # Bastion Security Group
 resource "aws_security_group" "bastion" {
   name = "${local.common_name}-bastion-sg"
+  vpc_id      = aws_vpc.main.id
   description = "Security group for the bastion"
   ingress {
     from_port = 22
@@ -43,6 +45,7 @@ resource "aws_security_group" "bastion" {
 
 resource "aws_security_group" "app" {
   name = "${local.common_name}-app-sg"
+  vpc_id      = aws_vpc.main.id
   description = "sg for app"
   ingress {
     description = "receive traffic from ALB only"

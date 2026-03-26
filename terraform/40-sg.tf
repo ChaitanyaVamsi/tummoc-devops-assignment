@@ -69,6 +69,14 @@ resource "aws_security_group" "app" {
     protocol = "tcp"
     security_groups = [aws_security_group.bastion.id]
   }
+
+  ingress {
+    description = "allow ssh from jenkins"
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    security_groups = [aws_security_group.jenkins.id]
+  }
   egress{
     description = "allow all outbound"
     from_port = 0

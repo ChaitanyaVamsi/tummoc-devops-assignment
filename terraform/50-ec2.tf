@@ -47,6 +47,25 @@ resource "aws_instance" "app" {
   }
   user_data = file("setup.sh")
   tags = merge(local.common_tags,{
-    Name = "${local.common_name}-app"
+    Name = "${local.common_name}-server"
+  })
+}
+
+resource "aws_instance" "jenkins" {
+  ami = data.aws_ami.ubuntu.id
+  instance_type = var.app_instance
+  subnet_id = aws_subnet.private.id
+  vpc_security_group_ids = [aws_security_group.jenkins.id]
+  associate_public_ip_address = false
+  key_name = var.key_pair_name # if this is added we cannot ssh to this
+  root_block_device {
+    volume_type = "gp3"
+    volume_size = 20
+    delete_on_termination = true
+    encrypted = true
+  }
+ # user_data = file("setup.sh")
+  tags = merge(local.common_tags,{
+    Name = "jenkins-server"
   })
 }

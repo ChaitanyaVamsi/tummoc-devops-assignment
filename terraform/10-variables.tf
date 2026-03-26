@@ -1,6 +1,6 @@
 variable "project" {
   type = string
-  default = "realtime-chatApp"
+  default = "realtime-chat-app"
 }
 
 variable "environment" {

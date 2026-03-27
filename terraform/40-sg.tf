@@ -55,13 +55,7 @@ resource "aws_security_group" "app" {
   name = "${local.common_name}-devServer-sg"
   vpc_id      = aws_vpc.main.id
   description = "sg for app"
-  ingress {
-    description = "receive traffic from ALB only"
-    from_port = 3000
-    to_port = 3000
-    protocol = "tcp"
-    security_groups = [aws_security_group.alb.id]
-  }
+
   ingress {
     description = "receive traffic from ALB only"
     from_port = 80

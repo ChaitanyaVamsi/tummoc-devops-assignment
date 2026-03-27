@@ -1,0 +1,39 @@
+version: '3.8'
+networks:
+  monitoring:
+    driver: bridge
+services:
+  frontend:
+    image: chatapp:latest
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.external-url=http://your-alb-dns/prometheus/'
+      - '--web.route-prefix=/prometheus'
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    environment:
+    - GF_SERVER_ROOT_URL=http://realtime-chat-app-dev-alb-1970283858.us-east-1.elb.amazonaws.com/grafana/
+    - GF_SERVER_SERVE_FROM_SUB_PATH=true
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - monitoring

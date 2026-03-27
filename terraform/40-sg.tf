@@ -63,6 +63,13 @@ resource "aws_security_group" "app" {
     security_groups = [aws_security_group.alb.id]
   }
   ingress {
+    description = "receive traffic from ALB only"
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+  ingress {
     description = "ssh from bastion only"
     from_port = 22
     to_port = 22

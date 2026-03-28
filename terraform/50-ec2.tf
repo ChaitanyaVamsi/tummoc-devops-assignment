@@ -39,14 +39,14 @@ resource "aws_instance" "app" {
   #iam_instance_profile = aws_iam_instance_profile.bastion.name
   # need more for terraform
   iam_instance_profile = "bastion_profile"
-  key_name = var.key_pair_name # if this is added we cannot ssh to this
+  key_name = var.key_pair_name # if this is not added we cannot ssh to this
   root_block_device {
     volume_type = "gp3"
     volume_size = 20
     delete_on_termination = true
     encrypted = true
   }
-  user_data = file("docker_setup.sh")
+  user_data = file("${path.module}/docker_setup.sh")
   tags = merge(local.common_tags,{
     Name = "${local.common_name}-server"
   })
@@ -70,7 +70,7 @@ resource "aws_instance" "jenkins" {
     delete_on_termination = true
     encrypted = true
   }
-  user_data = file("jenkins_setup.sh")
+  user_data = file("${path.module}/jenkins_setup.sh") // without path module it looks for file where i excecute tf command, with path module it goes to the project folder and get the file
   tags = merge(local.common_tags,{
     Name = "jenkins-server"
   })

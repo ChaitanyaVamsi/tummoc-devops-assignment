@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'node-app'
+    metrics_path: /metrics
+    static_configs:
+      #- targets: ['realtime-chat-app-dev-alb-1970283858.us-east-1.elb.amazonaws.com:3000']
+       - targets: ['frontend:3000']  # replace with your ALB URL

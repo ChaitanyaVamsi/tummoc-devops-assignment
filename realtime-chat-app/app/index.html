@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Chat</title>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer type="module" src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="chat-wrapper">
+      <header class="chat-header">
+        <h1>💬 Chat App</h1>
+        <p class="chat-subtitle">Real-time messaging with encryption</p>
+      </header>
+
+      <main class="chat-main">
+        <div id="message-container" class="message-container"></div>
+
+        <form id="send-container" class="send-container">
+          <input
+            type="text"
+            id="message-input"
+            placeholder="Type your message..."
+            autocomplete="off"
+          />
+          <button type="submit" id="send-button">Send</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+
+# Log files
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Live Server temp
+*.tmp
+
+# VS Code settings
+.vscode/
+
+# Cache folders
+.cache/
+
+# Environment file (in case you use one later)
+.env
+
+# Excel instruction file
+stepsToRunProjWithScreenShots.xlsx
+
+# Screenshots or temp images
+*.png
+*.jpg
+*.jpeg

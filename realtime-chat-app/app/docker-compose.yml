@@ -1,0 +1,57 @@
+version: '3.8'
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+  grafana-data:
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - grafana
+      - prometheus
+    networks:
+      - monitoring
+
+  frontend:
+    image: ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/realtime-chat-app/frontend:${APP_VERSION}  #  dynamic
+    container_name: frontend
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.route-prefix=/prometheus'
+      - '--web.external-url=http://${ALB_DNS}/prometheus/' # this ALB_DNS we need to update comes from jenkin ci
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    environment:
+      - GF_SERVER_ROOT_URL=http://${ALB_DNS}/grafana/ # this ALB_DNS we need to update comes from jenkin ci
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SERVER_DOMAIN=${ALB_DNS} # this ALB_DNS we need to update comes from jenkin ci
+    depends_on:
+      - prometheus
+    volumes:
+    - grafana-data:/var/lib/grafana
+    networks:
+      - monitoring

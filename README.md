@@ -324,35 +324,35 @@ Main application file:
 
 VPC
 
-![AWS VPC](docs/images/aws-vpc.png)
+![AWS VPC](docs/images/aws-vpc-cropped3.png)
 
 Subnets
 
-![AWS Subnets](docs/images/aws-subnets.png)
+![AWS Subnets](docs/images/aws-subnets-cropped3.png)
 
 Route tables
 
-![AWS Route Tables](docs/images/aws-route-tables.png)
+![AWS Route Tables](docs/images/aws-route-tables-cropped3.png)
 
 Public route table
 
-![AWS Public Route Table](docs/images/aws-public-route-table.png)
+![AWS Public Route Table](docs/images/aws-public-route-table-cropped3.png)
 
 Private route table
 
-![AWS Private Route Table](docs/images/aws-private-route-table.png)
+![AWS Private Route Table](docs/images/aws-private-route-table-cropped3.png)
 
 Security groups
 
-![AWS Security Groups](docs/images/aws-security-groups.png)
+![AWS Security Groups](docs/images/aws-security-groups-cropped3.png)
 
 EC2 instances
 
-![AWS EC2 Instances](docs/images/aws-ec2-instances.png)
+![AWS EC2 Instances](docs/images/aws-ec2-instances-cropped3.png)
 
 Application Load Balancer listeners
 
-![AWS ALB Listeners](docs/images/aws-alb-listeners.png)
+![AWS ALB Listeners](docs/images/aws-alb-listeners-cropped3.png)
 
 ### Jenkins / CI-CD
 

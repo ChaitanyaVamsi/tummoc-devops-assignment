@@ -85,7 +85,7 @@ resource "aws_security_group" "app" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = merge(local.common_tags,{Name = "${local.common_name}-bastion-sg"})
+  tags = merge(local.common_tags,{Name = "${local.common_name}-app-sg"})
 }
 
 resource "aws_security_group" "jenkins" {

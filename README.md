@@ -318,6 +318,68 @@ Main application file:
 
 - [realtime-chat-app/app/server.js](/i:/tummoc-devops-assignment/realtime-chat-app/app/server.js)
 
+## Screenshots
+
+### AWS Infrastructure
+
+VPC
+
+![AWS VPC](docs/images/aws-vpc.png)
+
+Subnets
+
+![AWS Subnets](docs/images/aws-subnets.png)
+
+Route tables
+
+![AWS Route Tables](docs/images/aws-route-tables.png)
+
+Public route table
+
+![AWS Public Route Table](docs/images/aws-public-route-table.png)
+
+Private route table
+
+![AWS Private Route Table](docs/images/aws-private-route-table.png)
+
+Security groups
+
+![AWS Security Groups](docs/images/aws-security-groups.png)
+
+EC2 instances
+
+![AWS EC2 Instances](docs/images/aws-ec2-instances.png)
+
+Application Load Balancer listeners
+
+![AWS ALB Listeners](docs/images/aws-alb-listeners.png)
+
+### Jenkins / CI-CD
+
+Pipeline stage view
+
+![Jenkins Pipeline](docs/images/jenkins-pipeline.png)
+
+Jenkins nodes
+
+![Jenkins Nodes](docs/images/jenkins-nodes.png)
+
+### Application
+
+Realtime chat application UI
+
+![App UI](docs/images/app-ui.png)
+
+### Monitoring
+
+Prometheus scrape target status
+
+![Prometheus Targets](docs/images/prometheus-targets.png)
+
+Grafana metrics dashboard
+
+![Grafana Metrics](docs/images/grafana-metrics.png)
+
 ## How To Run
 
 ### Run the app locally

@@ -1,8 +1,13 @@
 # DevOps Assignment Submission
 
-This repository is my submission for a DevOps practical assignment based on a team starting with no CI/CD, no containerization, and no monitoring.
+This repository is my submission for a DevOps practical assignment: building from zero — no CI/CD, no containerization, no monitoring — to a production-ready foundation with automated delivery, containerized deployment, and observability.
 
-I designed and implemented a minimal end-to-end DevOps setup around a sample realtime chat application, covering infrastructure provisioning, automated delivery, containerized deployment, and observability.
+## What I Built
+- Jenkins CI/CD pipeline triggered by GitHub webhooks (lint → test → build → push → deploy)
+- Dockerized app with multi-stage build, deployed via Docker Compose
+- AWS infrastructure provisioned with Terraform (VPC, EC2, ALB, ECR)
+- Prometheus + Grafana monitoring with custom Socket.IO metrics
+- Reverse proxying with Nginx as the single entry point for all services
 
 ## Tech Stack
 
@@ -11,23 +16,6 @@ I designed and implemented a minimal end-to-end DevOps setup around a sample rea
 - `Containerization`: Docker, Docker Compose, AWS ECR
 - `Runtime / App`: Node.js, Express, Socket.IO, Nginx
 - `Monitoring`: Prometheus, Grafana, `prom-client`
-
-## Highlights
-
-- Provisioned AWS infrastructure with Terraform
-- Built a Jenkins-based CI/CD pipeline for lint, test, build, push, and deploy
-- Containerized the application with Docker and deployed it with Docker Compose
-- Added Prometheus metrics and Grafana-based monitoring
-- Separated Jenkins and application workloads onto different EC2 instances
-
-## What This Repository Demonstrates
-
-- CI/CD with Jenkins
-- Docker image build and deployment
-- Infrastructure as Code with Terraform on AWS
-- Reverse proxying with Nginx
-- Monitoring with Prometheus and Grafana
-- An application instrumented with Prometheus metrics
 
 ## Project Structure
 
@@ -132,8 +120,6 @@ The infrastructure is intentionally split into layers:
 - [45-ecr.tf](/i:/tummoc-devops-assignment/terraform/45-ecr.tf): image registry
 - [50-ec2.tf](/i:/tummoc-devops-assignment/terraform/50-ec2.tf): compute instances
 - [60-alb.tf](/i:/tummoc-devops-assignment/terraform/60-alb.tf): ingress routing
-
-This makes the infrastructure easier to review, reason about, and extend.
 
 ### Network Layout
 

@@ -90,7 +90,7 @@ Application Load Balancer
 
 ## 1. Infrastructure as Code
 
-Infrastructure is implemented with Terraform in the [terraform](/i:/tummoc-devops-assignment/terraform) folder.
+Infrastructure is implemented with Terraform in the [terraform](./terraform) folder.
 
 ### AWS Resources Provisioned
 
@@ -112,14 +112,14 @@ The Terraform code provisions:
 
 The infrastructure is intentionally split into layers:
 
-- [00-provider.tf](/i:/tummoc-devops-assignment/terraform/00-provider.tf): provider and backend configuration
-- [10-variables.tf](/i:/tummoc-devops-assignment/terraform/10-variables.tf): reusable variables
-- [20-vpc.tf](/i:/tummoc-devops-assignment/terraform/20-vpc.tf): networking foundation
-- [30-nat.tf](/i:/tummoc-devops-assignment/terraform/30-nat.tf): outbound internet access for private resources
-- [40-sg.tf](/i:/tummoc-devops-assignment/terraform/40-sg.tf): security boundaries
-- [45-ecr.tf](/i:/tummoc-devops-assignment/terraform/45-ecr.tf): image registry
-- [50-ec2.tf](/i:/tummoc-devops-assignment/terraform/50-ec2.tf): compute instances
-- [60-alb.tf](/i:/tummoc-devops-assignment/terraform/60-alb.tf): ingress routing
+- [00-provider.tf](./terraform/00-provider.tf): provider and backend configuration
+- [10-variables.tf](./terraform/10-variables.tf): reusable variables
+- [20-vpc.tf](./terraform/20-vpc.tf): networking foundation
+- [30-nat.tf](./terraform/30-nat.tf): outbound internet access for private resources
+- [40-sg.tf](./terraform/40-sg.tf): security boundaries
+- [45-ecr.tf](./terraform/45-ecr.tf): image registry
+- [50-ec2.tf](./terraform/50-ec2.tf): compute instances
+- [60-alb.tf](./terraform/60-alb.tf): ingress routing
 
 ### Network Layout
 
@@ -154,8 +154,8 @@ The compute layer includes:
 
 Bootstrap scripts are also included:
 
-- [terraform/docker_setup.sh](/i:/tummoc-devops-assignment/terraform/docker_setup.sh): installs Docker, Docker Compose, Java, npm, and AWS CLI on the app server
-- [terraform/jenkins_setup.sh](/i:/tummoc-devops-assignment/terraform/jenkins_setup.sh): installs and starts Jenkins on the Jenkins server
+- [terraform/docker_setup.sh](./terraform/docker_setup.sh): installs Docker, Docker Compose, Java, npm, and AWS CLI on the app server
+- [terraform/jenkins_setup.sh](./terraform/jenkins_setup.sh): installs and starts Jenkins on the Jenkins server
 
 ### Load Balancer Design
 
@@ -168,13 +168,13 @@ This provides a single external entry point for both services.
 
 ### Registry Design
 
-Terraform also creates an ECR repository for the frontend image in [terraform/45-ecr.tf](/i:/tummoc-devops-assignment/terraform/45-ecr.tf).
+Terraform also creates an ECR repository for the frontend image in [terraform/45-ecr.tf](./terraform/45-ecr.tf).
 
 The Jenkins pipeline uses this repository to store versioned Docker images before deployment.
 
 ## 2. CI/CD Setup
 
-CI/CD is implemented using Jenkins in [realtime-chat-app/app/Jenkinsfile](/i:/tummoc-devops-assignment/realtime-chat-app/app/Jenkinsfile).
+CI/CD is implemented using Jenkins in [realtime-chat-app/app/Jenkinsfile](./realtime-chat-app/app/Jenkinsfile).
 
 The pipeline includes the required stages:
 
@@ -203,9 +203,9 @@ This replaces manual deployment with a repeatable release process.
 
 The pipeline is designed to:
 
-- read the app version dynamically from [package.json](/i:/tummoc-devops-assignment/realtime-chat-app/app/package.json)
+- read the app version dynamically from [package.json](./realtime-chat-app/app/package.json)
 - authenticate Docker to AWS ECR
-- build the app image from [Dockerfile](/i:/tummoc-devops-assignment/realtime-chat-app/app/Dockerfile)
+- build the app image from [Dockerfile](./realtime-chat-app/app/Dockerfile)
 - push a versioned image to ECR
 - export deployment variables such as `APP_VERSION`, `ACC_ID`, and `ALB_DNS`
 - run `docker compose pull`
@@ -231,9 +231,9 @@ The application is containerized using Docker and deployed with Docker Compose.
 
 Main files:
 
-- [realtime-chat-app/app/Dockerfile](/i:/tummoc-devops-assignment/realtime-chat-app/app/Dockerfile)
-- [realtime-chat-app/app/docker-compose.yml](/i:/tummoc-devops-assignment/realtime-chat-app/app/docker-compose.yml)
-- [realtime-chat-app/app/nginx.conf](/i:/tummoc-devops-assignment/realtime-chat-app/app/nginx.conf)
+- [realtime-chat-app/app/Dockerfile](./realtime-chat-app/app/Dockerfile)
+- [realtime-chat-app/app/docker-compose.yml](./realtime-chat-app/app/docker-compose.yml)
+- [realtime-chat-app/app/nginx.conf](./realtime-chat-app/app/nginx.conf)
 
 ### Dockerfile Design
 
@@ -261,10 +261,10 @@ The optional monitoring section is implemented as part of the deployed stack.
 
 Main monitoring-related files:
 
-- [realtime-chat-app/app/server.js](/i:/tummoc-devops-assignment/realtime-chat-app/app/server.js)
-- [realtime-chat-app/app/prometheus.yml](/i:/tummoc-devops-assignment/realtime-chat-app/app/prometheus.yml)
-- [realtime-chat-app/app/nginx.conf](/i:/tummoc-devops-assignment/realtime-chat-app/app/nginx.conf)
-- [realtime-chat-app/app/docker-compose.yml](/i:/tummoc-devops-assignment/realtime-chat-app/app/docker-compose.yml)
+- [realtime-chat-app/app/server.js](./realtime-chat-app/app/server.js)
+- [realtime-chat-app/app/prometheus.yml](./realtime-chat-app/app/prometheus.yml)
+- [realtime-chat-app/app/nginx.conf](./realtime-chat-app/app/nginx.conf)
+- [realtime-chat-app/app/docker-compose.yml](./realtime-chat-app/app/docker-compose.yml)
 
 ### Monitoring Design
 
@@ -302,7 +302,7 @@ The app serves the frontend, handles realtime messaging, and exposes Prometheus 
 
 Main application file:
 
-- [realtime-chat-app/app/server.js](/i:/tummoc-devops-assignment/realtime-chat-app/app/server.js)
+- [realtime-chat-app/app/server.js](./realtime-chat-app/app/server.js)
 
 ## Screenshots
 
@@ -370,7 +370,7 @@ Grafana metrics dashboard
 
 ### Run the app locally
 
-From [realtime-chat-app/app](/i:/tummoc-devops-assignment/realtime-chat-app/app):
+From [realtime-chat-app/app](./realtime-chat-app/app):
 
 ```powershell
 npm install
@@ -381,7 +381,7 @@ Then open `http://localhost:3000`.
 
 ### Run the full container stack
 
-From [realtime-chat-app/app](/i:/tummoc-devops-assignment/realtime-chat-app/app):
+From [realtime-chat-app/app](./realtime-chat-app/app):
 
 ```powershell
 $env:APP_VERSION="1.0.0"
@@ -392,7 +392,7 @@ docker compose up -d
 
 ### Run Terraform
 
-From [terraform](/i:/tummoc-devops-assignment/terraform):
+From [terraform](./terraform):
 
 ```powershell
 terraform init

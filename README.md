@@ -1,6 +1,7 @@
-# DevOps Assignment Submission
+# Production-Ready DevOps Platform
 
-This repository is my submission for a DevOps practical assignment: building from zero — no CI/CD, no containerization, no monitoring — to a production-ready foundation with automated delivery, containerized deployment, and observability.
+This project demonstrates a professional DevOps implementation, evolving a basic application setup into a production-ready platform with infrastructure as code, automated CI/CD, containerized deployment, and observability.
+
 
 ## What I Built
 - Jenkins CI/CD pipeline triggered by GitHub webhooks (lint → test → build → push → deploy)
